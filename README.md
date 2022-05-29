@@ -19,7 +19,7 @@ Example
 Derrive from ``BigBytes.JsonParticle.Json<T>`` to add static methods ``Serialize`` and ``Deserialize`` to the class.
 
 ```csharp
-public class Record : BigBytes.JsonParticle.Json<Record>
+public class Record : Json<Record>
 {
     public class _Book
     {
@@ -201,13 +201,6 @@ var csharp = "MyObject";
 var json = BigBytes.JsonParticle.Utility.CSharpNameToJsonName(csharp);
 System.Diagnostics.Debug.WriteLine(json); // expect "myObject"
 ```
-
-Project
--------
-
-Main library project directory contains two project files.
-
-``BigBytes.JsonParticle.Legacy.csproj`` 
 
 Notes
 -----

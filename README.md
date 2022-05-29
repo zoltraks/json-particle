@@ -165,6 +165,8 @@ Console.WriteLine(person.City);  // Outputs: "Warsaw"
 Console.WriteLine(person.Age);   // Outputs: "0"
 ```
 
+Voilà.
+
 ```json
 {
   "name": "Andy",
@@ -208,7 +210,7 @@ Main library project directory contains two project files.
 Notes
 -----
 
-``1)`` Ungreedy convertion allows to rewrite values only for fields that are present in both objects without throwing an exception 
+``1)`` Ungreedy convertion allows to rewrite values only for fields that are present in both objects without throwing an exception
 
 Author
 ------

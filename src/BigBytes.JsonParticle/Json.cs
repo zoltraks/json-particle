@@ -4,11 +4,18 @@ using Newtonsoft.Json.Serialization;
 namespace BigBytes.JsonParticle
 {
     /// <summary>
+    /// JSON
+    /// <br /><br />
     /// Static implementation of Serialize and Deserialize methods using JsonConvert from Newtonsoft.Json package.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract class Json<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public static string Serialize(T o)
         {
             DefaultContractResolver contractResolver = new DefaultContractResolver
@@ -25,6 +32,11 @@ namespace BigBytes.JsonParticle
             return json;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static T Deserialize(string json)
         {
             var settings = new JsonSerializerSettings()

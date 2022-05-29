@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace BigBytes.JsonParticle
@@ -7,7 +8,7 @@ namespace BigBytes.JsonParticle
     /// <summary>
     /// Generic class for simple object mapper using serialization.
     /// <br /><br />
-    /// Create mapper with target class you want to map other objects to.
+    /// Create mapper for destination class you want to map other objects to.
     /// <br /><br />
     /// For proper mapping both classes have to contian Serialize and Deserialize methods.
     /// </summary>
@@ -18,6 +19,11 @@ namespace BigBytes.JsonParticle
 
         private readonly Dictionary<Type, MethodInfo> _Serialize = new Dictionary<Type, MethodInfo>();
 
+        /// <summary>
+        /// Create mapper for destination class you want to map other objects to.
+        /// <br /><br />
+        /// For proper mapping both classes have to contian Serialize and Deserialize methods.
+        /// </summary>
         public Mapper()
         {
             var type = typeof(T);
@@ -40,8 +46,11 @@ namespace BigBytes.JsonParticle
         }
 
         /// <summary>
-        /// Create new object instance of mapping type from other object 
+        /// Create new object instance of destination type from source object 
         /// which implements "Serialize" method.
+        /// <br /><br />
+        /// Null value will be returned if source object could not be serialized 
+        /// or destination object can't be deserialized.
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
@@ -89,8 +98,16 @@ namespace BigBytes.JsonParticle
 
             var json = method.Invoke(null, new object[] { o }) as string;
 
-            var r = (T)_Deserialize.Invoke(null, new object[] { json });
+            T r = default(T);
 
+            try
+            {
+                r = (T)_Deserialize.Invoke(null, new object[] { json });
+            }
+            catch (InvalidCastException)
+            {
+                Debug.WriteLine($"{Utility.Now()} Error mapping to {typeof(T).Name} from {o.GetType().Name}");
+            }
             return r;
         }
     }

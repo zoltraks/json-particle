@@ -8,14 +8,10 @@
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
     <RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
